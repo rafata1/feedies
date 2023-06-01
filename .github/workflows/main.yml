@@ -6,13 +6,13 @@ on:
 
 jobs:
   test:
-#    services:
-#      image: mysql:8.0
-#      env:
-#        MYSQL_DATABASE: insvoar_test
-#        MYSQL_ROOT_PASSWORD: 1
-#      ports:
-#        - 3306
+    services:
+      image: mysql:8.0
+      env:
+        MYSQL_DATABASE: insvoar_test
+        MYSQL_ROOT_PASSWORD: 1
+      ports:
+        - 3306
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -20,7 +20,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
       - name: Run test
-        uses: go test -v ./...
+        run: go test -v ./...
   build:
     needs: test
     runs-on: self-hosted
