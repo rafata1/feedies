@@ -13,7 +13,7 @@ jobs:
           MYSQL_DATABASE: insvoar_test
           MYSQL_ROOT_PASSWORD: 1
         ports:
-          - 3306
+          - "3306:3306"
     runs-on: self-hosted
     steps:
       - name: Checkout code
