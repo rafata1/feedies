@@ -25,17 +25,15 @@ var globalConf config.Config
 var globalDB *sqlx.DB
 
 func NewIntegration() *integration {
-	initOnce.Do(func() {
-		rootDir := findRootDir()
+	rootDir := findRootDir()
 
-		conf := config.LoadTestConfig(rootDir)
-		migrateUpForTesting(rootDir, conf.MySQL.DSN())
+	conf := config.LoadTestConfig(rootDir)
+	migrateUpForTesting(rootDir, conf.MySQL.DSN())
 
-		db := conf.MySQL.MustConnect()
+	db := conf.MySQL.MustConnect()
 
-		globalConf = conf
-		globalDB = db
-	})
+	globalConf = conf
+	globalDB = db
 
 	t := &integration{
 		conf: globalConf,
